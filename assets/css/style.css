@@ -46,8 +46,8 @@
     --tg-body-font-family: 'Poppins', sans-serif;
     --tg-heading-font-family: 'Paytone One', sans-serif;
     --tg-pacifico-font-family: 'Pacifico', cursive;
-    --tg-primary-color: #df2614;
-    --tg-secondary-color: #1e0e09;
+    --tg-primary-color: #0e256a;
+    --tg-secondary-color: #f36f21;
     --tg-body-font-color: #7f6f6c;
     --tg-heading-font-color: #2a1510;
     --tg-paragraph-color: #7f6f6c;
@@ -71,6 +71,7 @@
     --tg-teal: #20c997;
     --tg-cyan: #0dcaf0;
     --tg-white: #ffffff;
+    --tg-bg-alt: #f4f1ea;
     --tg-gray: #e6e6e6;
     --tg-gray-two: #efe8d9;
     --tg-gray-three: #a3a2a2;
@@ -89,6 +90,7 @@ body {
 	line-height: var(--tg-body-line-height);
 	color: var(--tg-body-font-color);
 	font-style: normal;
+	background-color: var(--tg-bg-alt);
 }
 img,
 .img {
@@ -1781,7 +1783,7 @@ body.search-visible {
 }
 .services-item {
     border-radius: 8px;
-    background: var(--tg-white);
+    background: var(--tg-bg-alt);
     box-shadow: 0px 3px 16.74px 1.26px rgba(102, 18, 26, 0.06);
     padding: 60px 45px;
     min-height: 330px;
@@ -3701,7 +3703,7 @@ body.search-visible {
     color: var(--tg-primary-color);
 }
 .faq-wrap .accordion-item {
-    background-color: var(--tg-white);
+    background-color: var(--tg-bg-alt);
     border: none;
     border-radius: 10px;
     margin-bottom: 10px;
