@@ -690,5 +690,25 @@
         <script src="assets/js/ajax-form.js"></script>
         <script src="assets/js/wow.min.js"></script>
         <script src="assets/js/main.js"></script>
+        
+        <!-- Custom Script - Logo Sticky -->
+        <script>
+            $(window).on('scroll', function() {
+                var scroll = $(window).scrollTop();
+                var logo = $('.transparent-header .logo img');
+                
+                if (scroll >= 100) {
+                    // Quando sticky, usa logo branca
+                    if (logo.attr('src') !== 'assets/img/logo/logo.png') {
+                        logo.attr('src', 'assets/img/logo/logo.png');
+                    }
+                } else {
+                    // Quando não sticky, usa logo azul
+                    if (logo.attr('src') !== 'assets/img/logo/logo-blue.png') {
+                        logo.attr('src', 'assets/img/logo/logo-blue.png');
+                    }
+                }
+            });
+        </script>
     </body>
 </html>

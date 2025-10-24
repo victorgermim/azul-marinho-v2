@@ -123,17 +123,6 @@
                                     </div>
                                     <div class="header-action d-none d-md-block">
                                         <ul class="list-wrap">
-                                            <li class="header-search">
-                                                <h2 class="title">Filé de Merluza - Selecionado e Certificado</h2>
-                                                <a href="#"><i class="flaticon-search"></i></a>
-                                            </li>
-                                                <h3 class="price">Preço sob consulta <span>- Em estoque conforme lote</span></h3>
-                                            <li class="header-shop-cart">
-                                                <a href="#">
-                                                    <i class="flaticon-shopping-basket"></i>
-                                                    <span>0</span>
-                                                <p>Filés com processamento e congelamento controlados. Rastreabilidade completa e conformidade com padrões de segurança alimentar.</p>
-                                            </li>
                                             <li class="header-btn"><a href="tel:(11)1234-5678" class="btn">(11) 1234-5678</a></li>
                                         </ul>
                                     </div>
@@ -141,7 +130,6 @@
                             </div>
 
                             <!-- Mobile Menu  -->
-                                                        <button class="purchase-btn">SOLICITAR ORÇAMENTO</button>
                                 <nav class="menu-box">
                                     <div class="close-btn"><i class="fas fa-times"></i></div>
                                                 <a href="#" class="buy-btn">Peça um orçamento</a>
@@ -636,5 +624,25 @@
         <script src="assets/js/ajax-form.js"></script>
         <script src="assets/js/wow.min.js"></script>
         <script src="assets/js/main.js"></script>
+        
+        <!-- Custom Script - Logo Sticky -->
+        <script>
+            $(window).on('scroll', function() {
+                var scroll = $(window).scrollTop();
+                var logo = $('.transparent-header .logo img');
+                
+                if (scroll >= 100) {
+                    // Quando sticky, usa logo branca
+                    if (logo.attr('src') !== 'assets/img/logo/logo.png') {
+                        logo.attr('src', 'assets/img/logo/logo.png');
+                    }
+                } else {
+                    // Quando não sticky, usa logo azul
+                    if (logo.attr('src') !== 'assets/img/logo/logo-blue.png') {
+                        logo.attr('src', 'assets/img/logo/logo-blue.png');
+                    }
+                }
+            });
+        </script>
     </body>
 </html>

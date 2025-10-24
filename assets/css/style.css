@@ -630,7 +630,7 @@ label {
     color: var(--tg-primary-color);
 }
 .logo img {
-    max-height: 54px;
+    max-height: 75px;
 }
 .navbar-wrap ul li .sub-menu {
     position: absolute;
@@ -709,7 +709,7 @@ label {
 	top: 0;
 	width: 100%;
 	z-index: 99;
-	background: var(--tg-gray-two);
+	background: transparent;
 	-webkit-animation: 1000ms ease-in-out 0s normal none 1 running fadeInDown;
 	animation: 1000ms ease-in-out 0s normal none 1 running fadeInDown;
 	-webkit-box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
@@ -5000,4 +5000,110 @@ body.search-visible {
         -webkit-transform: rotate(-360deg);
         transform: rotate(-360deg);
     }
+}
+
+/*=============================
+	Custom - Azul Marinho
+===============================*/
+
+/* Prevenir scroll horizontal */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+.container, .container-fluid, .custom-container, .custom-container-two {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+/* Menu transparente com fundo azul */
+.transparent-header .menu-area {
+    background: rgba(14, 37, 106, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+/* Menu fixo (sticky) com fundo transparente azul */
+.transparent-header .menu-area.sticky-menu {
+    background: rgba(14, 37, 106, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+}
+
+/* Remove fundo do container do sticky menu */
+.transparent-header .sticky-menu .menu-wrap {
+    background: transparent;
+}
+
+/* Oculta o header-top quando sticky */
+.transparent-header .sticky-menu .header-top-wrap {
+    display: none;
+}
+
+/* Textos do menu em branco para contraste */
+.transparent-header .navbar-wrap ul li a {
+    color: var(--tg-white);
+}
+
+/* Hover dos links do menu */
+.transparent-header .navbar-wrap > ul > li:hover > a,
+.transparent-header .navbar-wrap > ul > li.active > a {
+    color: var(--tg-secondary-color);
+}
+
+/* Submenu com fundo azul escuro */
+.transparent-header .navbar-wrap ul li .sub-menu {
+    background: rgba(14, 37, 106, 0.98);
+    border-color: rgba(255,255,255,0.1);
+}
+
+.transparent-header .navbar-wrap ul li .sub-menu li a {
+    color: var(--tg-white);
+}
+
+.transparent-header .navbar-wrap ul li .sub-menu li a:hover {
+    color: var(--tg-secondary-color);
+    background: rgba(255,255,255,0.05);
+}
+
+/* Ajuste no header top */
+.transparent-header .header-top-wrap {
+    background: rgba(14, 37, 106, 0.85);
+    padding: 12px 0;
+}
+
+/* Remove elementos de pesquisa e carrinho do CSS também */
+.header-search,
+.header-shop-cart {
+    display: none !important;
+}
+
+/* Ajusta espaçamento do botão de telefone */
+.header-action > ul {
+    padding-left: 0;
+}
+
+.header-action > ul::after,
+.header-action > ul::before {
+    display: none;
+}
+
+/* Ajustes para logo maior */
+.transparent-header .logo img {
+    max-height: 75px;
+    transition: all 0.3s ease;
+}
+
+/* Logo um pouco menor quando sticky para melhor proporção */
+.transparent-header .sticky-menu .logo img {
+    max-height: 60px;
+}
+
+/* Ajusta padding do menu para acomodar logo maior */
+.transparent-header .navbar-wrap ul li a {
+    padding: 35px 0;
+}
+
+.transparent-header .sticky-menu .navbar-wrap ul li a {
+    padding: 25px 0;
 }
