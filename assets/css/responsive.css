@@ -694,6 +694,22 @@
 
 /* Medium devices (tablets, 768px and up) */
 @media (max-width: 767.98px) {
+.mobile-menu {
+    width: 100%;
+    padding-right: 0;
+    z-index: 9999;
+}
+.mobile-menu .menu-box {
+    padding: 70px 0 40px;
+}
+.mobile-menu .nav-logo {
+    padding: 0 25px 30px;
+    text-align: center;
+}
+.mobile-menu .close-btn {
+    top: 20px;
+    right: 20px;
+}
 .custom-container {
     max-width: 100%;
 }
@@ -806,15 +822,27 @@
 .product-item-two {
     padding: 30px 25px;
     display: block;
+    text-align: center;
 }
 .product-img-two {
     margin: 0 auto 25px;
 }
 .product-content-two {
     gap: 15px;
+    flex-direction: column;
+    align-items: center;
 }
 .product-info {
-    width: 68%;
+    width: 100%;
+}
+.product-content-two .product-price {
+    width: 100%;
+    text-align: center;
+}
+.product-content-two .product-price .tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 .team-bg::after {
     display: none;
