@@ -1999,6 +1999,9 @@ body.search-visible {
     flex-grow: 1;
     text-align: right;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .features-img::before {
     content: "";
