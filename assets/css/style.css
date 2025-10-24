@@ -5037,6 +5037,19 @@ html, body {
     max-width: 100%;
 }
 
+/* Reduzir imagens da seção features no desktop */
+@media (min-width: 768px) {
+    .features-img img {
+        max-width: 200px;
+        height: auto;
+    }
+    
+    .features-img::before {
+        width: 180px !important;
+        height: 180px !important;
+    }
+}
+
 /* Menu transparente com fundo azul */
 .transparent-header .menu-area {
     background: rgba(14, 37, 106, 0.95);
