@@ -37,15 +37,15 @@
 /*=============================
 	1. Google Fonts
 ===============================*/
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Paytone+One&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+/* Fontes removidas - usando fontes locais personalizadas */
 
 /*=============================
 	01. Variable CSS
 ===============================*/
 :root {
-    --tg-body-font-family: 'Poppins', sans-serif;
-    --tg-heading-font-family: 'Paytone One', sans-serif;
-    --tg-pacifico-font-family: 'Pacifico', cursive;
+    --tg-body-font-family: 'Montserrat', sans-serif;
+    --tg-heading-font-family: 'HighVoltage Rough', sans-serif;
+    --tg-pacifico-font-family: 'HighVoltage Rough', sans-serif;
     --tg-primary-color: #0e256a;
     --tg-secondary-color: #f36f21;
     --tg-body-font-color: #7f6f6c;
@@ -1958,29 +1958,42 @@ body.search-visible {
 .features-content > span {
     display: block;
     text-transform: uppercase;
-    color: var(--tg-primary-color);
+    color: var(--tg-secondary-color);
     font-weight: 700;
     line-height: 1;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    font-size: 13px;
 }
 .features-content .title {
     margin-bottom: 15px;
-    font-size: 24px;
+    font-size: 22px;
     text-transform: uppercase;
     color: #373b40;
+    line-height: 1.2;
+    font-weight: 700;
 }
 .features-content p {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-size: 13px;
     color: #818080;
     text-transform: uppercase;
+    line-height: 1.4;
 }
 .features-content .price {
-    display: block;
-    color: var(--tg-primary-color);
-    font-size: 24px;
-    font-weight: 700;
+    display: inline-block;
+    color: #ffffff;
+    background: var(--tg-secondary-color);
+    font-size: 14px;
+    font-weight: 600;
     margin-bottom: 0;
+    padding: 8px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.features-content .price:hover {
+    background: #d85f1a;
+    transform: translateY(-2px);
 }
 .features-img {
     flex-grow: 1;
@@ -2301,6 +2314,7 @@ body.search-visible {
     margin-bottom: 20px;
     text-transform: uppercase;
     font-size: 18px;
+    font-weight: 700;
 }
 .product-content .price {
     margin-bottom: 5px;
@@ -2370,6 +2384,7 @@ body.search-visible {
     font-size: 20px;
     text-transform: uppercase;
     margin-bottom: 20px;
+    font-weight: 700;
 }
 .product-content-two .product-info p {
     margin-bottom: 0;
@@ -2386,15 +2401,20 @@ body.search-visible {
     color: var(--tg-primary-color);
 }
 .product-content-two .product-price .tag {
-    display: block;
+    display: inline-block;
     text-transform: uppercase;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 600;
     font-family: var(--tg-heading-font-family);
-    color: var(--tg-heading-font-color);
+    color: var(--tg-white);
+    background: var(--tg-secondary-color);
+    padding: 8px 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 .product-content-two .product-price .tag:hover {
-    color: var(--tg-primary-color);
+    background: #d85f1a;
+    transform: translateY(-2px);
 }
 
 /* product-three */
@@ -5040,15 +5060,32 @@ html, body {
     display: none;
 }
 
-/* Textos do menu em branco para contraste */
+/* Textos do menu em azul da marca */
 .transparent-header .navbar-wrap ul li a {
-    color: var(--tg-white);
+    color: var(--tg-primary-color);
+}
+
+/* Links brancos quando sticky */
+.transparent-header .sticky-menu .navbar-wrap ul li a {
+    color: var(--tg-white) !important;
 }
 
 /* Hover dos links do menu */
 .transparent-header .navbar-wrap > ul > li:hover > a,
 .transparent-header .navbar-wrap > ul > li.active > a {
     color: var(--tg-secondary-color);
+}
+
+/* Botão CTA laranja no sticky */
+.transparent-header .sticky-menu .header-action .btn {
+    background: var(--tg-secondary-color) !important;
+    border-color: var(--tg-secondary-color) !important;
+    color: var(--tg-white) !important;
+}
+
+.transparent-header .sticky-menu .header-action .btn:hover {
+    background: #d85f1a !important;
+    border-color: #d85f1a !important;
 }
 
 /* Submenu com fundo azul escuro */
@@ -5058,11 +5095,11 @@ html, body {
 }
 
 .transparent-header .navbar-wrap ul li .sub-menu li a {
-    color: var(--tg-white);
+    color: var(--tg-white) !important;
 }
 
 .transparent-header .navbar-wrap ul li .sub-menu li a:hover {
-    color: var(--tg-secondary-color);
+    color: var(--tg-secondary-color) !important;
     background: rgba(255,255,255,0.05);
 }
 
@@ -5090,13 +5127,18 @@ html, body {
 
 /* Ajustes para logo maior */
 .transparent-header .logo img {
-    max-height: 75px;
+    max-height: 85px;
     transition: all 0.3s ease;
 }
 
 /* Logo um pouco menor quando sticky para melhor proporção */
 .transparent-header .sticky-menu .logo img {
-    max-height: 60px;
+    max-height: 70px;
+}
+
+/* Logo branca quando sticky usando filter */
+.transparent-header .sticky-menu .logo img {
+    filter: brightness(0) invert(1);
 }
 
 /* Ajusta padding do menu para acomodar logo maior */
@@ -5106,4 +5148,333 @@ html, body {
 
 .transparent-header .sticky-menu .navbar-wrap ul li a {
     padding: 25px 0;
+}
+
+/* Botão do banner com fundo laranja por padrão */
+.banner-content .banner-btn {
+    background: var(--tg-secondary-color) !important;
+    border-color: var(--tg-secondary-color) !important;
+    color: #ffffff !important;
+}
+
+.banner-content .banner-btn:hover {
+    background: transparent !important;
+    border-color: var(--tg-secondary-color) !important;
+    color: var(--tg-secondary-color) !important;
+}
+
+/* Newsletter Section - Azul Marinho */
+.newsletter-section {
+    background: linear-gradient(135deg, #0e256a 0%, #1a3a8a 100%);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../img/bg/product_bg01.jpg') center/cover;
+    opacity: 0.05;
+    z-index: 0;
+}
+
+.newsletter-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.newsletter-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.newsletter-logo {
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 30px;
+    filter: brightness(0) invert(1);
+}
+
+.newsletter-description {
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.newsletter-form input,
+.newsletter-form textarea {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: var(--tg-body-font-family);
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+.newsletter-form input::placeholder,
+.newsletter-form textarea::placeholder {
+    color: #999;
+}
+
+.newsletter-form input:focus,
+.newsletter-form textarea:focus {
+    outline: none;
+    border-color: var(--tg-secondary-color);
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(243, 111, 33, 0.1);
+}
+
+.newsletter-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.newsletter-button {
+    background: var(--tg-secondary-color);
+    color: #ffffff;
+    padding: 18px 40px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--tg-body-font-family);
+    letter-spacing: 0.5px;
+}
+
+.newsletter-button:hover {
+    background: #d85f1a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(243, 111, 33, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .newsletter-section {
+        padding: 60px 0;
+    }
+    
+    .newsletter-logo {
+        max-width: 200px;
+    }
+    
+    .newsletter-description {
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+    
+    .newsletter-form input,
+    .newsletter-form textarea {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    .newsletter-button {
+        padding: 15px 30px;
+        font-size: 14px;
+    }
+}
+
+/* Footer Azul Marinho - Customização */
+.footer-area {
+    background: #0e256a !important;
+}
+
+.footer-bottom {
+    background: #0a1d52 !important;
+    padding: 30px 0 !important;
+}
+
+.footer-bottom .copyright-text p {
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.footer-bottom .copyright-text p a {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.footer-links-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.footer-links-bottom a {
+    color: #ffffff;
+    font-size: 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links-bottom a:hover {
+    color: var(--tg-secondary-color);
+}
+
+.footer-social-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+}
+
+.footer-social-bottom a {
+    color: #ffffff;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.footer-social-bottom a:hover {
+    color: var(--tg-secondary-color);
+}
+
+.footer-social-bottom a:hover {
+    color: var(--tg-secondary-color);
+}
+
+@media (max-width: 768px) {
+    .footer-links-bottom,
+    .footer-social-bottom {
+        justify-content: center;
+        margin-top: 15px;
+    }
+    
+    /* Ajuste da logo no mobile - reduzida */
+    .transparent-header .logo img {
+        max-height: 35px !important;
+    }
+    
+    .transparent-header .sticky-menu .logo img {
+        max-height: 35px !important;
+    }
+    
+    /* Ajuste do menu mobile */
+    .menu-area {
+        padding: 15px 0 !important;
+    }
+    
+    .menu-wrap {
+        padding: 0 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row-reverse; /* Inverte a ordem: logo à direita, hambúrguer à esquerda */
+    }
+    
+    /* Garantir que o menu não saia da tela */
+    .container.custom-container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Ajuste do botão hamburguer - alinhamento */
+    .menu-area .mobile-nav-toggler {
+        margin-top: 0 !important;
+        margin-right: 0 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        padding: 5px;
+    }
+}
+
+/* Ajustes de fonte customizadas - Azul Marinho */
+/* Aplicar HighVoltage Rough para todos os títulos */
+h1, h2, h3, h4, h5, h6,
+.title,
+.section-title .title,
+.banner-content .title,
+.team-content .title,
+.features-content .title,
+.product-content h4,
+.footer-widget .fw-title,
+.cta-content h2,
+.blog-post-content h3,
+.faq-content .title {
+    font-family: var(--tg-heading-font-family) !important;
+    letter-spacing: 0.5px;
+}
+
+/* Ajuste específico do título do banner */
+.banner-content .title {
+    font-size: 100px !important;
+    line-height: 1.2 !important;
+    margin-bottom: 10px !important;
+}
+
+/* Reduzir tamanho das imagens flutuantes do banner (salmão, tilápia, alface, limão) em 20% total */
+.banner-shape-wrap img {
+    transform: scale(0.81);
+    transform-origin: center;
+}
+
+/* Manter o prato (imagem central) com redução de 10% apenas */
+.banner-img img {
+    transform: scale(0.9);
+    transform-origin: center;
+}
+
+/* Subtítulo do banner em laranja */
+.banner-content .sub-title {
+    color: var(--tg-secondary-color) !important;
+    font-size: 32px !important;
+    font-weight: 600 !important;
+    display: block !important;
+    margin-bottom: 30px !important;
+    font-family: var(--tg-body-font-family) !important;
+}
+
+@media (max-width: 768px) {
+    .banner-content .title {
+        font-size: 40px !important;
+    }
+    
+    .banner-content .sub-title {
+        font-size: 24px !important;
+    }
+}
+
+/* Aplicar Montserrat para textos normais */
+body, p, span, a, li, input, textarea, button,
+.sub-title,
+.newsletter-description,
+.features-content p,
+.product-content .price,
+.product-content p,
+.team-content span,
+.footer-widget p,
+.footer-contact,
+.copyright-text {
+    font-family: var(--tg-body-font-family) !important;
+}
+
+/* Ajuste para subtítulos também usarem HighVoltage */
+.section-title .sub-title,
+.newsletter-subtitle {
+    font-family: var(--tg-pacifico-font-family) !important;
 }

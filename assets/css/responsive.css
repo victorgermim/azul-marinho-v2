@@ -737,10 +737,20 @@
     padding: 25px 25px 25px 25px;
     flex-wrap: wrap;
     flex-direction: column-reverse;
+    display: flex;
 }
 .features-content {
     width: 100%;
     flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 200px;
+}
+.features-content .price {
+    margin-top: auto;
+    display: block;
+    width: fit-content;
 }
 .features-img {
     text-align: center;
