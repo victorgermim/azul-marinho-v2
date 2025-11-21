@@ -1,0 +1,29 @@
+/*=============================
+	Custom Fonts - Azul Marinho
+===============================*/
+
+/* Montserrat - Fonte para textos normais */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/fontes novas/Montserrat (3)/Montserrat-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/fontes novas/Montserrat (3)/Montserrat-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* HighVoltage Rough - Fonte para títulos */
+@font-face {
+    font-family: 'HighVoltage Rough';
+    src: url('../fonts/fontes novas/highvoltage_rough/HighVoltage Rough.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
