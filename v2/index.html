@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azul Marinho - Experiência v2</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Fonts & Styles -->
+    <link rel="stylesheet" href="../assets/css/fonts.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0e256a',
+                        secondary: '#f36f21',
+                        dark: '#222222',
+                    },
+                    fontFamily: {
+                        heading: ['"HighVoltage Rough"', 'sans-serif'],
+                        body: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#f4f1ea] text-[#7f6f6c]">
+
+    <!-- Interactive Header -->
+    <div class="fixed top-10 inset-x-0 max-w-2xl mx-auto z-50 flex justify-center">
+        <nav class="navbar-pill relative rounded-full px-8 py-6 flex justify-center space-x-6 bg-white dark:bg-black">
+            
+            <!-- Item: Início -->
+            <div class="menu-item">
+                <a href="../index.html" class="menu-item-text text-black dark:text-white hover:text-primary font-medium">Início</a>
+            </div>
+
+            <!-- Item: Produtos -->
+            <div class="menu-item">
+                <p class="menu-item-text text-black dark:text-white hover:text-primary font-medium">Produtos</p>
+                <div class="dropdown-container w-[500px]"> <!-- Fixed width for grid -->
+                    <div class="dropdown-content">
+                        <div class="grid grid-cols-2 gap-6 p-4">
+                            <!-- Product 1 -->
+                            <a href="../shop-2.html?cat=tilapia" class="flex space-x-3 group">
+                                <img src="../assets/img/product/product_img01.png" alt="Tilápia" class="w-[100px] h-[60px] object-cover rounded-md shadow-md group-hover:scale-105 transition-transform">
+                                <div>
+                                    <h4 class="text-lg font-bold mb-1 text-black dark:text-white group-hover:text-primary">Tilápia</h4>
+                                    <p class="text-neutral-500 text-xs leading-tight">Filés frescos e sem espinhas.</p>
+                                </div>
+                            </a>
+                            <!-- Product 2 -->
+                            <a href="../shop-2.html?cat=salmao" class="flex space-x-3 group">
+                                <img src="../assets/img/product/product_img02.png" alt="Salmão" class="w-[100px] h-[60px] object-cover rounded-md shadow-md group-hover:scale-105 transition-transform">
+                                <div>
+                                    <h4 class="text-lg font-bold mb-1 text-black dark:text-white group-hover:text-primary">Salmão</h4>
+                                    <p class="text-neutral-500 text-xs leading-tight">Premium e rico em Omega 3.</p>
+                                </div>
+                            </a>
+                            <!-- Product 3 -->
+                            <a href="../shop-2.html?cat=camarao" class="flex space-x-3 group">
+                                <img src="../assets/img/product/organic_product03.png" alt="Camarão" class="w-[100px] h-[60px] object-cover rounded-md shadow-md group-hover:scale-105 transition-transform">
+                                <div>
+                                    <h4 class="text-lg font-bold mb-1 text-black dark:text-white group-hover:text-primary">Camarão</h4>
+                                    <p class="text-neutral-500 text-xs leading-tight">Diversos tamanhos para você.</p>
+                                </div>
+                            </a>
+                            <!-- Product 4 -->
+                            <a href="../shop-2.html?cat=bacalhau" class="flex space-x-3 group">
+                                <img src="../assets/img/product/organic_product04.png" alt="Bacalhau" class="w-[100px] h-[60px] object-cover rounded-md shadow-md group-hover:scale-105 transition-transform">
+                                <div>
+                                    <h4 class="text-lg font-bold mb-1 text-black dark:text-white group-hover:text-primary">Bacalhau</h4>
+                                    <p class="text-neutral-500 text-xs leading-tight">Tradição portuguesa.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item: Conteúdo -->
+            <div class="menu-item">
+                <p class="menu-item-text text-black dark:text-white hover:text-primary font-medium">Conteúdo</p>
+                <div class="dropdown-container w-64">
+                    <div class="dropdown-content">
+                        <div class="flex flex-col space-y-3 text-sm p-2">
+                            <a href="../blog-receitas.html" class="text-neutral-700 hover:text-primary block">Receitas Exclusivas</a>
+                            <a href="../blog-artigos.html" class="text-neutral-700 hover:text-primary block">Dicas de Conservação</a>
+                            <a href="../blog-artigos.html" class="text-neutral-700 hover:text-primary block">Nutrição e Saúde</a>
+                            <a href="../shop-2.html" class="text-neutral-700 hover:text-primary block">Catálogo Completo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item: Empresa -->
+            <div class="menu-item">
+                <p class="menu-item-text text-black dark:text-white hover:text-primary font-medium">Empresa</p>
+                <div class="dropdown-container w-64">
+                    <div class="dropdown-content">
+                        <div class="flex flex-col space-y-3 text-sm p-2">
+                            <a href="../about.html" class="text-neutral-700 hover:text-primary block">Sobre Nós</a>
+                            <a href="../contact.html" class="text-neutral-700 hover:text-primary block">Fale Conosco</a>
+                            <a href="../contact.html" class="text-neutral-700 hover:text-primary block">Trabalhe Conosco</a>
+                            <a href="../contact.html" class="text-neutral-700 hover:text-primary block">Política de Privacidade</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </nav>
+    </div>
+
+    <!-- Hero Scroll Demo Section -->
+    <div class="flex flex-col overflow-hidden pb-[200px] pt-[150px] min-h-screen">
+        
+        <!-- Container Scroll -->
+        <div class="scroll-container h-[60rem] md:h-[80rem] flex items-center justify-center relative p-2 md:p-20">
+            
+            <div class="py-10 md:py-40 w-full relative perspective-container">
+                
+                <!-- Header Component -->
+                <div class="scroll-header div max-w-5xl mx-auto text-center mb-12 transition-transform duration-100 ease-out">
+                    <h1 class="text-4xl md:text-6xl font-semibold text-black dark:text-white font-heading text-primary">
+                        Descubra o poder do <br />
+                        <span class="text-5xl md:text-[7rem] font-bold mt-2 leading-none text-secondary block">
+                            Sabor Fresco
+                        </span>
+                    </h1>
+                </div>
+
+                <!-- Card Component -->
+                <div class="scroll-card max-w-5xl -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full border-4 border-[#6C6C6C] p-2 md:p-6 bg-[#222222] rounded-[30px] shadow-2xl transition-transform duration-100 ease-out origin-center">
+                    <div class="h-full w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-zinc-900 md:rounded-2xl md:p-4 relative">
+                        <!-- Using a placeholder image from the main site or a nice seafood placeholder -->
+                        <img 
+                            src="../assets/img/banner/banner_img.png" 
+                            alt="Pescados Frescos Azul Marinho" 
+                            class="mx-auto rounded-2xl object-cover h-full w-full object-center"
+                            draggable="false"
+                        />
+                        <!-- Overlay gradient for better text readability if needed, or just style -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent rounded-2xl pointer-events-none"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Content Section to allow scrolling -->
+    <section class="py-20 bg-white relative z-10">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-heading text-primary mb-6">Qualidade que você confia</h2>
+            <p class="text-lg max-w-2xl mx-auto">
+                Na Azul Marinho, garantimos que cada produto que chega à sua mesa tenha passado pelos mais rigorosos padrões de qualidade.
+                Do mar direto para você.
+            </p>
+            <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-6 border rounded-xl shadow-sm hover:shadow-md transition">
+                    <h3 class="text-xl font-bold text-secondary mb-2">Fresco</h3>
+                    <p>Capturado e processado rapidamente para manter o frescor.</p>
+                </div>
+                <div class="p-6 border rounded-xl shadow-sm hover:shadow-md transition">
+                    <h3 class="text-xl font-bold text-secondary mb-2">Sustentável</h3>
+                    <p>Respeitamos os oceanos e as normas de pesca responsável.</p>
+                </div>
+                <div class="p-6 border rounded-xl shadow-sm hover:shadow-md transition">
+                    <h3 class="text-xl font-bold text-secondary mb-2">Premium</h3>
+                    <p>Seleção rigorosa para oferecer apenas o melhor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll Expand Media Section -->
+    <section class="expand-section relative h-[300vh] bg-black">
+        <div class="sticky-wrapper sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center">
+            
+            <!-- Background Image (Fades out) -->
+            <div class="absolute inset-0 z-0 expand-bg opacity-100 transition-opacity duration-100">
+                <img src="../assets/img/bg/area_bg.jpg" alt="Background" class="w-full h-full object-cover opacity-50">
+            </div>
+
+            <!-- Central Media Container -->
+            <div class="expand-media-container relative z-10 rounded-2xl overflow-hidden shadow-2xl" style="width: 300px; height: 400px;">
+                <img src="../assets/img/gallery/gallery_img01.png" alt="Imersão Azul" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/30 expand-overlay"></div>
+                
+                <!-- Text inside media -->
+                <div class="absolute bottom-10 left-0 right-0 text-center expand-inner-text opacity-100">
+                    <p class="text-2xl text-white font-heading">Oceano Profundo</p>
+                    <p class="text-white/80 text-sm">Role para expandir</p>
+                </div>
+            </div>
+
+            <!-- Split Text Titles -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-20 mix-blend-difference">
+                <h2 class="expand-title-left text-6xl md:text-8xl font-bold text-white mr-4 translate-x-0 transition-transform duration-100">IMERSÃO</h2>
+                <h2 class="expand-title-right text-6xl md:text-8xl font-bold text-white ml-4 translate-x-0 transition-transform duration-100">AZUL</h2>
+            </div>
+
+            <!-- Content that appears at the end -->
+            <div class="expand-content absolute inset-0 flex items-center justify-center z-30 opacity-0 pointer-events-none">
+                <div class="max-w-4xl mx-auto text-center px-4">
+                    <h2 class="text-4xl font-bold mb-6 text-white">Sobre Nossa Jornada</h2>
+                    <p class="text-lg mb-8 text-white/90">
+                        Mergulhe na experiência Azul Marinho. Nossa dedicação vai além da pesca; é sobre conectar você com a vastidão e a pureza do oceano.
+                        Cada produto conta uma história de respeito, tradição e qualidade inigualável.
+                    </p>
+                    <p class="text-lg text-white/90">
+                        Descubra novos horizontes de sabor e sustentabilidade.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="py-20 bg-[#f4f1ea] relative z-10">
+        <div class="container mx-auto px-4">
+            <form class="flex flex-col items-center text-sm text-slate-800">
+                <p class="text-xs bg-blue-100 text-primary font-medium px-3 py-1 rounded-full uppercase tracking-wider">Fale Conosco</p> 
+                <h1 class="text-4xl font-heading font-bold py-4 text-center text-primary">Vamos Conversar</h1>
+                <p class="max-md:text-sm text-gray-500 pb-10 text-center">
+                    Ou entre em contato diretamente pelo e-mail <a href="mailto:contato@azulmarinho.com" class="text-primary hover:underline font-bold">contato@azulmarinho.com</a>
+                </p>
+                
+                <div class="max-w-96 w-full px-4">
+                    <label htmlFor="name" class="font-medium text-gray-700">Nome Completo</label>
+                    <div class="flex items-center mt-2 mb-4 h-10 pl-3 border border-slate-300 rounded-full focus-within:ring-2 focus-within:ring-primary transition-all overflow-hidden bg-white">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.311 16.406a9.64 9.64 0 0 0-4.748-4.158 5.938 5.938 0 1 0-7.125 0 9.64 9.64 0 0 0-4.749 4.158.937.937 0 1 0 1.623.938c1.416-2.447 3.916-3.906 6.688-3.906 2.773 0 5.273 1.46 6.689 3.906a.938.938 0 0 0 1.622-.938M5.938 7.5a4.063 4.063 0 1 1 8.125 0 4.063 4.063 0 0 1-8.125 0" fill="#94a3b8"/>
+                        </svg>
+                        <input type="text" class="h-full px-2 w-full outline-none bg-transparent text-gray-700 placeholder-gray-400" placeholder="Digite seu nome completo" required />
+                    </div>
+            
+                    <label htmlFor="email-address" class="font-medium text-gray-700 mt-4">E-mail</label>
+                    <div class="flex items-center mt-2 mb-4 h-10 pl-3 border border-slate-300 rounded-full focus-within:ring-2 focus-within:ring-primary transition-all overflow-hidden bg-white">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.5 3.438h-15a.937.937 0 0 0-.937.937V15a1.563 1.563 0 0 0 1.562 1.563h13.75A1.563 1.563 0 0 0 18.438 15V4.375a.94.94 0 0 0-.938-.937m-2.41 1.874L10 9.979 4.91 5.313zM3.438 14.688v-8.18l5.928 5.434a.937.937 0 0 0 1.268 0l5.929-5.435v8.182z" fill="#94a3b8"/>
+                        </svg>
+                        <input type="email" class="h-full px-2 w-full outline-none bg-transparent text-gray-700 placeholder-gray-400" placeholder="Digite seu e-mail" required />
+                    </div>
+            
+                    <label htmlFor="message" class="font-medium text-gray-700 mt-4">Mensagem</label>
+                    <textarea rows="4" class="w-full mt-2 p-3 bg-white border border-slate-300 rounded-lg resize-none outline-none focus:ring-2 focus:ring-primary transition-all text-gray-700 placeholder-gray-400" placeholder="Como podemos ajudar?" required></textarea>
+                    
+                    <button type="submit" class="flex items-center justify-center gap-1 mt-6 bg-secondary hover:bg-[#d95e16] text-white font-bold py-3 w-full rounded-full transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        Enviar Mensagem
+                        <svg class="mt-0.5" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="m18.038 10.663-5.625 5.625a.94.94 0 0 1-1.328-1.328l4.024-4.023H3.625a.938.938 0 0 1 0-1.875h11.484l-4.022-4.025a.94.94 0 0 1 1.328-1.328l5.625 5.625a.935.935 0 0 1-.002 1.33" fill="#fff"/>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
