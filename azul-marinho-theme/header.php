@@ -38,11 +38,11 @@
                                 <ul class="list-wrap">
                                     <li class="header-location">
                                         <i class="fas fa-map-marker-alt"></i>
-                                        Atendimento em todo Brasil
+                                        <?php echo esc_html( get_theme_mod( 'header_location', 'Atendimento em todo Brasil' ) ); ?>
                                     </li>
                                     <li>
                                         <i class="fas fa-envelope"></i>
-                                        <a href="mailto:contato@azulmarinho.com">contato@azulmarinho.com</a>
+                                        <a href="mailto:<?php echo esc_attr( get_theme_mod( 'header_email', 'contato@azulmarinho.com' ) ); ?>"><?php echo esc_html( get_theme_mod( 'header_email', 'contato@azulmarinho.com' ) ); ?></a>
                                     </li>
                                 </ul>
                             </div>
@@ -58,10 +58,15 @@
                                 </div>
                                 <div class="header-top-social">
                                     <ul class="list-wrap">
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <?php 
+                                        $social_networks = array( 'facebook', 'twitter', 'instagram', 'linkedin' );
+                                        foreach ( $social_networks as $network ) {
+                                            $link = get_theme_mod( "social_{$network}", '#' );
+                                            if ( $link && $link !== '#' ) {
+                                                echo '<li><a href="' . esc_url( $link ) . '"><i class="fab fa-' . esc_attr( $network ) . ( $network === 'facebook' ? '-f' : ( $network === 'linkedin' ? '-in' : '' ) ) . '"></i></a></li>';
+                                            }
+                                        }
+                                        ?>
                                     </ul>
                                 </div>
                             </div>
@@ -106,7 +111,7 @@
                                     </div>
                                     <div class="header-action d-none d-md-block">
                                         <ul class="list-wrap">
-                                            <li class="header-btn"><a href="tel:(11)1234-5678" class="btn">(11) 1234-5678</a></li>
+                                            <li class="header-btn"><a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9]/', '', get_theme_mod( 'header_phone', '(11) 1234-5678' ) ) ); ?>" class="btn"><?php echo esc_html( get_theme_mod( 'header_phone', '(11) 1234-5678' ) ); ?></a></li>
                                         </ul>
                                     </div>
                                 </nav>

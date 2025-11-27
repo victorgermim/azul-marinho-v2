@@ -117,46 +117,43 @@ get_header();
                 <div class="col-lg-8">
                     <div class="team-item-wrap">
                         <div class="row justify-content-center">
-                            <!-- Dynamic Categories could go here, hardcoded for now to match HTML -->
-                            <div class="col-lg-4 col-md-6 col-sm-8">
-                                <div class="team-item">
-                                    <div class="team-thumb">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/team/team_img01.jpg" alt="Salmão">
-                                        <a href="<?php echo wc_get_page_permalink( 'shop' ); ?>?cat=salmao" class="link-btn"><i class="fas fa-plus"></i></a>
+                            <?php
+                            $terms = get_terms( array(
+                                'taxonomy'   => 'product_cat',
+                                'hide_empty' => true,
+                                'number'     => 3,
+                                'orderby'    => 'count',
+                                'order'      => 'DESC',
+                            ) );
+
+                            if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+                                foreach ( $terms as $term ) {
+                                    $thumbnail_id = get_term_meta( $term->term_id, 'thumbnail_id', true );
+                                    $image_url    = wp_get_attachment_url( $thumbnail_id );
+                                    
+                                    if ( ! $image_url ) {
+                                        $image_url = wc_placeholder_img_src();
+                                    }
+                                    ?>
+                                    <div class="col-lg-4 col-md-6 col-sm-8">
+                                        <div class="team-item">
+                                            <div class="team-thumb">
+                                                <img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $term->name ); ?>">
+                                                <a href="<?php echo esc_url( get_term_link( $term ) ); ?>" class="link-btn"><i class="fas fa-plus"></i></a>
+                                            </div>
+                                            <div class="team-content">
+                                                <div class="line" data-background="<?php echo get_template_directory_uri(); ?>/assets/img/images/line.png"></div>
+                                                <h4 class="title"><a href="<?php echo esc_url( get_term_link( $term ) ); ?>"><?php echo esc_html( $term->name ); ?></a></h4>
+                                                <span><?php echo esc_html( $term->description ? wp_trim_words( $term->description, 5 ) : $term->count . ' Produtos' ); ?></span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="team-content">
-                                        <div class="line" data-background="<?php echo get_template_directory_uri(); ?>/assets/img/images/line.png"></div>
-                                        <h4 class="title"><a href="<?php echo wc_get_page_permalink( 'shop' ); ?>?cat=salmao">Salmão</a></h4>
-                                        <span>Super macio e nutritivo</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-8">
-                                <div class="team-item">
-                                    <div class="team-thumb">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/team/team_img02.jpg" alt="Tilápia">
-                                        <a href="<?php echo wc_get_page_permalink( 'shop' ); ?>?cat=tilapia" class="link-btn"><i class="fas fa-plus"></i></a>
-                                    </div>
-                                    <div class="team-content">
-                                        <div class="line" data-background="<?php echo get_template_directory_uri(); ?>/assets/img/images/line.png"></div>
-                                        <h4 class="title"><a href="<?php echo wc_get_page_permalink( 'shop' ); ?>?cat=tilapia">Tilápia</a></h4>
-                                        <span>Leve e sem espinhas</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-8">
-                                <div class="team-item">
-                                    <div class="team-thumb">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/team/team_img03.jpg" alt="Camarão">
-                                        <a href="<?php echo wc_get_page_permalink( 'shop' ); ?>?cat=camarao" class="link-btn"><i class="fas fa-plus"></i></a>
-                                    </div>
-                                    <div class="team-content">
-                                        <div class="line" data-background="<?php echo get_template_directory_uri(); ?>/assets/img/images/line.png"></div>
-                                        <h4 class="title"><a href="<?php echo wc_get_page_permalink( 'shop' ); ?>?cat=camarao">Camarão</a></h4>
-                                        <span>Textura perfeita</span>
-                                    </div>
-                                </div>
-                            </div>
+                                    <?php
+                                }
+                            } else {
+                                echo '<div class="col-12 text-center"><p>Nenhuma categoria encontrada.</p></div>';
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
