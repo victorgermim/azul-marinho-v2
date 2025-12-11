@@ -85,28 +85,150 @@ function azul_marinho_scripts() {
 add_action( 'wp_enqueue_scripts', 'azul_marinho_scripts' );
 
 /**
- * Force load specific templates based on URL path.
- * This fixes the issue where pages fallback to index.php (likely due to 404 or missing page/rewrite).
+ * Customizer Settings
  */
-function azul_marinho_force_template( $template ) {
-    $request_uri = $_SERVER['REQUEST_URI'];
+function azul_marinho_customize_register( $wp_customize ) {
+    // Header Info Section
+    $wp_customize->add_section( 'azul_marinho_header_info', array(
+        'title'    => __( 'Informações do Cabeçalho', 'azul-marinho' ),
+        'priority' => 30,
+    ) );
 
-    // Check for "sobre-nos" and load page-about.php
-    if ( strpos( $request_uri, '/sobre-nos' ) !== false ) {
-        $new_template = locate_template( array( 'page-about.php' ) );
-        if ( ! empty( $new_template ) ) {
-            return $new_template;
-        }
+    // Location
+    $wp_customize->add_setting( 'header_location', array(
+        'default'   => 'Atendimento em todo Brasil',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( 'header_location', array(
+        'label'    => __( 'Localização', 'azul-marinho' ),
+        'section'  => 'azul_marinho_header_info',
+        'type'     => 'text',
+    ) );
+
+    // Email
+    $wp_customize->add_setting( 'header_email', array(
+        'default'   => 'contato@azulmarinho.com',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( 'header_email', array(
+        'label'    => __( 'E-mail', 'azul-marinho' ),
+        'section'  => 'azul_marinho_header_info',
+        'type'     => 'email',
+    ) );
+
+    // Phone
+    $wp_customize->add_setting( 'header_phone', array(
+        'default'   => '(11) 1234-5678',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( 'header_phone', array(
+        'label'    => __( 'Telefone', 'azul-marinho' ),
+        'section'  => 'azul_marinho_header_info',
+        'type'     => 'text',
+    ) );
+
+    // Social Links Section
+    $wp_customize->add_section( 'azul_marinho_social', array(
+        'title'    => __( 'Redes Sociais', 'azul-marinho' ),
+        'priority' => 31,
+    ) );
+
+    $social_networks = array( 'facebook', 'twitter', 'instagram', 'linkedin', 'youtube' );
+    foreach ( $social_networks as $network ) {
+        $wp_customize->add_setting( "social_{$network}", array(
+            'default'   => '#',
+            'transport' => 'refresh',
+        ) );
+        $wp_customize->add_control( "social_{$network}", array(
+            'label'    => ucfirst( $network ),
+            'section'  => 'azul_marinho_social',
+            'type'     => 'url',
+        ) );
     }
 
-    // Check for "contato" and load page-contact.php
-    if ( strpos( $request_uri, '/contato' ) !== false ) {
-        $new_template = locate_template( array( 'page-contact.php' ) );
-        if ( ! empty( $new_template ) ) {
-            return $new_template;
-        }
-    }
+    // Footer Logos Section
+    $wp_customize->add_section( 'azul_marinho_footer_logos', array(
+        'title'    => __( 'Logos do Rodapé', 'azul-marinho' ),
+        'priority' => 32,
+    ) );
 
-    return $template;
+    $wp_customize->add_setting( 'footer_logo_1', array(
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'footer_logo_1', array(
+        'label'    => __( 'Logo Principal (Rodapé)', 'azul-marinho' ),
+        'section'  => 'azul_marinho_footer_logos',
+    ) ) );
+
+    $wp_customize->add_setting( 'footer_logo_2', array(
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'footer_logo_2', array(
+        'label'    => __( 'Logo Parceiro (Rodapé)', 'azul-marinho' ),
+        'section'  => 'azul_marinho_footer_logos',
+    ) ) );
 }
-add_filter( 'template_include', 'azul_marinho_force_template' );
+add_action( 'customize_register', 'azul_marinho_customize_register' );
+
+
+/**
+ * Auto-Import Assets to Media Library
+ * 
+ * This function scans the theme's assets/img directory and imports images into the Media Library
+ * if they don't already exist. Useful for populating the library for customization.
+ * 
+ * Run by visiting: /?import_theme_assets=1 (Admin only)
+ */
+function azul_marinho_import_assets() {
+    if ( ! isset( $_GET['import_theme_assets'] ) || ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
+    require_once( ABSPATH . 'wp-admin/includes/image.php' );
+    require_once( ABSPATH . 'wp-admin/includes/file.php' );
+    require_once( ABSPATH . 'wp-admin/includes/media.php' );
+
+    $assets_dir = get_template_directory() . '/assets/img/';
+    $files = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $assets_dir ) );
+
+    $count = 0;
+
+    foreach ( $files as $file ) {
+        if ( $file->isDir() ) continue;
+
+        $file_path = $file->getPathname();
+        $file_name = $file->getFilename();
+        $file_type = wp_check_filetype( $file_name );
+
+        if ( ! $file_type['ext'] ) continue;
+
+        // Check if image already exists in DB
+        global $wpdb;
+        $query = "SELECT COUNT(*) FROM {$wpdb->posts} WHERE guid LIKE '%" . $wpdb->esc_like( $file_name ) . "'";
+        $exists = $wpdb->get_var( $query );
+
+        if ( ! $exists ) {
+            // Copy file to uploads directory
+            $upload_dir = wp_upload_dir();
+            $new_file = $upload_dir['path'] . '/' . $file_name;
+            copy( $file_path, $new_file );
+
+            // Create attachment
+            $attachment = array(
+                'post_mime_type' => $file_type['type'],
+                'post_title'     => sanitize_file_name( $file_name ),
+                'post_content'   => '',
+                'post_status'    => 'inherit'
+            );
+
+            $attach_id = wp_insert_attachment( $attachment, $new_file );
+            $attach_data = wp_generate_attachment_metadata( $attach_id, $new_file );
+            wp_update_attachment_metadata( $attach_id, $attach_data );
+
+            $count++;
+        }
+    }
+
+    echo "<div class='notice notice-success is-dismissible'><p>Importação concluída! $count novas imagens importadas.</p></div>";
+}
+add_action( 'admin_init', 'azul_marinho_import_assets' );

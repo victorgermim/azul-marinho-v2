@@ -90,72 +90,64 @@
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product-item">
-                                <div class="product-img">
-                                    <a href="<?php echo home_url('/loja'); ?>?cat=tilapia"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/product/product_img01.png" alt="Filé de Tilápia" loading="lazy"></a>
-                                </div>
-                                <div class="product-content">
-                                    <div class="line" data-background="<?php echo get_template_directory_uri(); ?>/assets/img/images/line.png"></div>
-                                    <h4 class="title"><a href="<?php echo home_url('/loja'); ?>?cat=tilapia">Filé de Tilápia</a></h4>
-                                    <h6 class="price">Textura delicada e sabor suave</h6>
-                                    <div class="product-tag">
-                                        <ul class="list-wrap">
-                                            <li><a href="<?php echo home_url('/loja'); ?>?cat=tilapia">Praticamente sem espinhas</a></li>
-                                        </ul>
+                        <?php
+                        $args_products_1 = array(
+                            'post_type'      => 'product',
+                            'posts_per_page' => 3,
+                            'status'         => 'publish',
+                        );
+                        $loop_products_1 = new WP_Query( $args_products_1 );
+
+                        if ( $loop_products_1->have_posts() ) :
+                            while ( $loop_products_1->have_posts() ) : $loop_products_1->the_post();
+                                global $product;
+                                if ( ! is_object( $product ) ) {
+                                    $product = wc_get_product( get_the_ID() );
+                                }
+                                ?>
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="product-item">
+                                        <div class="product-img">
+                                            <a href="<?php echo esc_url( get_permalink() ); ?>">
+                                                <?php 
+                                                if ( has_post_thumbnail() ) {
+                                                    the_post_thumbnail( 'woocommerce_thumbnail', array( 'loading' => 'lazy' ) );
+                                                } else {
+                                                    echo '<img src="' . esc_url( wc_placeholder_img_src() ) . '" alt="' . esc_attr( get_the_title() ) . '" loading="lazy">';
+                                                }
+                                                ?>
+                                            </a>
+                                        </div>
+                                        <div class="product-content">
+                                            <div class="line" data-background="<?php echo get_template_directory_uri(); ?>/assets/img/images/line.png"></div>
+                                            <h4 class="title"><a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_title(); ?></a></h4>
+                                            <h6 class="price"><?php echo $product->get_price_html(); ?></h6>
+                                            <div class="product-tag">
+                                                <ul class="list-wrap">
+                                                    <?php 
+                                                    $terms = get_the_terms( get_the_ID(), 'product_cat' );
+                                                    if ( $terms && ! is_wp_error( $terms ) ) {
+                                                        $term = array_shift( $terms );
+                                                        echo '<li><a href="' . esc_url( get_term_link( $term ) ) . '">' . esc_html( $term->name ) . '</a></li>';
+                                                    }
+                                                    ?>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-shape">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 401 314" preserveAspectRatio="none">
+                                                <path d="M331.5,1829h361a20,20,0,0,1,20,20l-29,274a20,20,0,0,1-20,20h-292a20,20,0,0,1-20-20l-40-274A20,20,0,0,1,331.5,1829Z" transform="translate(-311.5 -1829)" />
+                                            </svg>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="product-shape">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 401 314" preserveAspectRatio="none">
-                                        <path d="M331.5,1829h361a20,20,0,0,1,20,20l-29,274a20,20,0,0,1-20,20h-292a20,20,0,0,1-20-20l-40-274A20,20,0,0,1,331.5,1829Z" transform="translate(-311.5 -1829)" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product-item">
-                                <div class="product-img">
-                                    <a href="<?php echo home_url('/loja'); ?>?cat=salmao"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/product/product_img02.png" alt="Salmão Premium" loading="lazy"></a>
-                                </div>
-                                <div class="product-content">
-                                    <div class="line" data-background="<?php echo get_template_directory_uri(); ?>/assets/img/images/line.png"></div>
-                                    <h4 class="title"><a href="<?php echo home_url('/loja'); ?>?cat=salmao">Salmão Premium</a></h4>
-                                    <h6 class="price">Super macio e nutritivo</h6>
-                                    <div class="product-tag">
-                                        <ul class="list-wrap">
-                                            <li><a href="<?php echo home_url('/loja'); ?>?cat=salmao">Certificação ASC</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-shape">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 401 314" preserveAspectRatio="none">
-                                        <path d="M331.5,1829h361a20,20,0,0,1,20,20l-29,274a20,20,0,0,1-20,20h-292a20,20,0,0,1-20-20l-40-274A20,20,0,0,1,331.5,1829Z" transform="translate(-311.5 -1829)" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product-item">
-                                <div class="product-img">
-                                    <a href="<?php echo home_url('/loja'); ?>?cat=bacalhau"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/product/product_img03.png" alt="Bacalhau do Porto" loading="lazy"></a>
-                                </div>
-                                <div class="product-content">
-                                    <div class="line" data-background="<?php echo get_template_directory_uri(); ?>/assets/img/images/line.png"></div>
-                                    <h4 class="title"><a href="<?php echo home_url('/loja'); ?>?cat=bacalhau">Bacalhau do Porto</a></h4>
-                                    <h6 class="price">Tradição e qualidade</h6>
-                                    <div class="product-tag">
-                                        <ul class="list-wrap">
-                                            <li><a href="<?php echo home_url('/loja'); ?>?cat=bacalhau">Importado de Portugal</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-shape">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 401 314" preserveAspectRatio="none">
-                                        <path d="M331.5,1829h361a20,20,0,0,1,20,20l-29,274a20,20,0,0,1-20,20h-292a20,20,0,0,1-20-20l-40-274A20,20,0,0,1,331.5,1829Z" transform="translate(-311.5 -1829)" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
+                                <?php
+                            endwhile;
+                            wp_reset_postdata();
+                        else :
+                            echo '<div class="col-12 text-center"><p>Nenhum produto encontrado.</p></div>';
+                        endif;
+                        ?>
                     </div>
                 </div>
                 <div class="shop-shape">
@@ -201,74 +193,52 @@
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-lg-6 col-md-10">
-                            <div class="product-item-two">
-                                <div class="product-img-two">
-                                    <a href="<?php echo home_url('/loja'); ?>?cat=merluza"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/product/organic_product01.png" alt=""></a>
-                                </div>
-                                <div class="product-content-two">
-                                    <div class="product-info">
-                                        <h4 class="title"><a href="<?php echo home_url('/loja'); ?>?cat=merluza">Filé de Merluza</a></h4>
-                                        <p>Filés premium com congelamento IQF. Ideal para restaurantes e redes de alimentação.</p>
-                                    </div>
-                                    <div class="product-price">
-                                        <h5 class="price">Sob consulta</h5>
-                                        <a href="<?php echo home_url('/loja'); ?>?cat=merluza" class="tag">Ver produtos</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-10">
-                            <div class="product-item-two">
-                                <div class="product-img-two">
-                                    <a href="<?php echo home_url('/loja'); ?>?cat=salmao"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/product/organic_product02.png" alt=""></a>
-                                </div>
-                                <div class="product-content-two">
-                                    <div class="product-info">
-                                        <h4 class="title"><a href="<?php echo home_url('/loja'); ?>?cat=salmao">Salmão do Atlântico</a></h4>
-                                        <p>Certificação ASC. Textura super macia e alto valor nutricional para seu cardápio.</p>
-                                    </div>
-                                    <div class="product-price">
-                                        <h5 class="price">Sob consulta</h5>
-                                        <a href="<?php echo home_url('/loja'); ?>?cat=salmao" class="tag">Ver produtos</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-10">
-                            <div class="product-item-two">
-                                <div class="product-img-two">
-                                    <a href="<?php echo home_url('/loja'); ?>?cat=camarao"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/product/organic_product03.png" alt=""></a>
-                                </div>
-                                <div class="product-content-two">
-                                    <div class="product-info">
-                                        <h4 class="title"><a href="<?php echo home_url('/loja'); ?>?cat=camarao">Camarão Premium</a></h4>
-                                        <p>Diversas calibragens disponíveis. Perfeito para pratos especiais e alta gastronomia.</p>
-                                    </div>
-                                    <div class="product-price">
-                                        <h5 class="price">Sob consulta</h5>
-                                        <a href="<?php echo home_url('/loja'); ?>?cat=camarao" class="tag">Ver produtos</a>
+                        <?php
+                        $args_products_2 = array(
+                            'post_type'      => 'product',
+                            'posts_per_page' => 4,
+                            'offset'         => 3,
+                            'status'         => 'publish',
+                        );
+                        $loop_products_2 = new WP_Query( $args_products_2 );
+
+                        if ( $loop_products_2->have_posts() ) :
+                            while ( $loop_products_2->have_posts() ) : $loop_products_2->the_post();
+                                global $product;
+                                if ( ! is_object( $product ) ) {
+                                    $product = wc_get_product( get_the_ID() );
+                                }
+                                ?>
+                                <div class="col-lg-6 col-md-10">
+                                    <div class="product-item-two">
+                                        <div class="product-img-two">
+                                            <a href="<?php echo esc_url( get_permalink() ); ?>">
+                                                <?php 
+                                                if ( has_post_thumbnail() ) {
+                                                    the_post_thumbnail( 'woocommerce_thumbnail' );
+                                                } else {
+                                                    echo '<img src="' . esc_url( wc_placeholder_img_src() ) . '" alt="' . esc_attr( get_the_title() ) . '">';
+                                                }
+                                                ?>
+                                            </a>
+                                        </div>
+                                        <div class="product-content-two">
+                                            <div class="product-info">
+                                                <h4 class="title"><a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_title(); ?></a></h4>
+                                                <p><?php echo wp_trim_words( get_the_excerpt(), 15 ); ?></p>
+                                            </div>
+                                            <div class="product-price">
+                                                <h5 class="price"><?php echo $product->get_price_html(); ?></h5>
+                                                <a href="<?php echo esc_url( get_permalink() ); ?>" class="tag">Ver produto</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-10">
-                            <div class="product-item-two">
-                                <div class="product-img-two">
-                                    <a href="<?php echo home_url('/loja'); ?>?cat=bacalhau"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/product/organic_product04.png" alt=""></a>
-                                </div>
-                                <div class="product-content-two">
-                                    <div class="product-info">
-                                        <h4 class="title"><a href="<?php echo home_url('/loja'); ?>?cat=bacalhau">Bacalhau Selecionado</a></h4>
-                                        <p>Importado de Portugal. Qualidade superior para ocasiões especiais e datas comemorativas.</p>
-                                    </div>
-                                    <div class="product-price">
-                                        <h5 class="price">Sob consulta</h5>
-                                        <a href="<?php echo home_url('/loja'); ?>?cat=bacalhau" class="tag">Ver produtos</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                <?php
+                            endwhile;
+                            wp_reset_postdata();
+                        endif;
+                        ?>
                     </div>
                     <div class="shop-now-btn text-center mt-40">
                         <a href="<?php echo home_url('/loja'); ?>" class="btn">Ver Catálogo Completo</a>
@@ -384,69 +354,53 @@
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="blog-post-item">
-                                <div class="blog-post-thumb">
-                                    <a href="<?php echo home_url('/artigo/5-receitas-com-tilapia'); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/blog/blog_post01.jpg" alt=""></a>
-                                </div>
-                                <div class="blog-post-content">
-                                    <div class="blog-meta">
-                                        <ul class="list-wrap">
-                                            <li><a href="<?php echo home_url('/blog'); ?>"><i class="fas fa-user"></i>Azul Marinho</a></li>
-                                            <li><i class="fas fa-comments"></i>03</li>
-                                        </ul>
-                                    </div>
-                                    <h4 class="title"><a href="<?php echo home_url('/artigo/5-receitas-com-tilapia'); ?>">5 Receitas com Tilápia para Cardápios Lucrativos</a></h4>
-                                    <p>Aprenda a criar pratos deliciosos e rentáveis com filé de tilápia certificado.</p>
-                                    <div class="blog-post-bottom">
-                                        <a href="<?php echo home_url('/artigo/5-receitas-com-tilapia'); ?>" class="link-btn">Ler mais</a>
-                                        <a href="<?php echo home_url('/artigo/5-receitas-com-tilapia'); ?>" class="link-arrow"><i class="fas fa-angle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="blog-post-item">
-                                <div class="blog-post-thumb">
-                                    <a href="<?php echo home_url('/artigo/como-armazenar-pescados'); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/blog/blog_post02.jpg" alt=""></a>
-                                </div>
-                                <div class="blog-post-content">
-                                    <div class="blog-meta">
-                                        <ul class="list-wrap">
-                                            <li><a href="<?php echo home_url('/blog'); ?>"><i class="fas fa-user"></i>Azul Marinho</a></li>
-                                            <li><i class="fas fa-comments"></i>03</li>
-                                        </ul>
-                                    </div>
-                                    <h4 class="title"><a href="<?php echo home_url('/artigo/como-armazenar-pescados'); ?>">Como Armazenar Pescados Congelados Corretamente</a></h4>
-                                    <p>Dicas profissionais para manter a qualidade dos seus produtos no estoque.</p>
-                                    <div class="blog-post-bottom">
-                                        <a href="<?php echo home_url('/artigo/como-armazenar-pescados'); ?>" class="link-btn">Ler mais</a>
-                                        <a href="<?php echo home_url('/artigo/como-armazenar-pescados'); ?>" class="link-arrow"><i class="fas fa-angle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="blog-post-item">
-                                <div class="blog-post-thumb">
-                                    <a href="<?php echo home_url('/artigo/salmao-beneficios'); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/blog/blog_post03.jpg" alt=""></a>
-                                </div>
-                                <div class="blog-post-content">
-                                    <div class="blog-meta">
-                                        <ul class="list-wrap">
-                                            <li><a href="<?php echo home_url('/blog'); ?>"><i class="fas fa-user"></i>Azul Marinho</a></li>
-                                            <li><i class="fas fa-comments"></i>03</li>
-                                        </ul>
-                                    </div>
-                                    <h4 class="title"><a href="<?php echo home_url('/artigo/salmao-beneficios'); ?>">Salmão: Benefícios Nutricionais que Atraem Clientes</a></h4>
-                                    <p>Descubra por que o salmão é um dos pescados mais valorizados em cardápios.</p>
-                                    <div class="blog-post-bottom">
-                                        <a href="<?php echo home_url('/artigo/salmao-beneficios'); ?>" class="link-btn">Ler mais</a>
-                                        <a href="<?php echo home_url('/artigo/salmao-beneficios'); ?>" class="link-arrow"><i class="fas fa-angle-right"></i></a>
+                        <?php
+                        $args_blog = array(
+                            'post_type'      => 'post',
+                            'posts_per_page' => 3,
+                            'status'         => 'publish',
+                        );
+                        $loop_blog = new WP_Query( $args_blog );
+
+                        if ( $loop_blog->have_posts() ) :
+                            while ( $loop_blog->have_posts() ) : $loop_blog->the_post();
+                                ?>
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="blog-post-item">
+                                        <div class="blog-post-thumb">
+                                            <a href="<?php echo esc_url( get_permalink() ); ?>">
+                                                <?php 
+                                                if ( has_post_thumbnail() ) {
+                                                    the_post_thumbnail( 'medium', array( 'loading' => 'lazy' ) );
+                                                } else {
+                                                    echo '<img src="' . get_template_directory_uri() . '/assets/img/blog/blog_post01.jpg" alt="' . esc_attr( get_the_title() ) . '">';
+                                                }
+                                                ?>
+                                            </a>
+                                        </div>
+                                        <div class="blog-post-content">
+                                            <div class="blog-meta">
+                                                <ul class="list-wrap">
+                                                    <li><a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"><i class="fas fa-user"></i><?php get_the_author(); ?></a></li>
+                                                    <li><i class="fas fa-comments"></i><?php echo get_comments_number(); ?></li>
+                                                </ul>
+                                            </div>
+                                            <h4 class="title"><a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_title(); ?></a></h4>
+                                            <p><?php echo wp_trim_words( get_the_excerpt(), 15 ); ?></p>
+                                            <div class="blog-post-bottom">
+                                                <a href="<?php echo esc_url( get_permalink() ); ?>" class="link-btn">Ler mais</a>
+                                                <a href="<?php echo esc_url( get_permalink() ); ?>" class="link-arrow"><i class="fas fa-angle-right"></i></a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                                <?php
+                            endwhile;
+                            wp_reset_postdata();
+                        else :
+                            echo '<div class="col-12 text-center"><p>Nenhum artigo encontrado.</p></div>';
+                        endif;
+                        ?>
                     </div>
                 </div>
             </section>
