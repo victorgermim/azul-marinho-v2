@@ -83,3 +83,30 @@ function azul_marinho_scripts() {
 	wp_enqueue_script( 'azul-marinho-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'azul_marinho_scripts' );
+
+/**
+ * Force load specific templates based on URL path.
+ * This fixes the issue where pages fallback to index.php (likely due to 404 or missing page/rewrite).
+ */
+function azul_marinho_force_template( $template ) {
+    $request_uri = $_SERVER['REQUEST_URI'];
+
+    // Check for "sobre-nos" and load page-about.php
+    if ( strpos( $request_uri, '/sobre-nos' ) !== false ) {
+        $new_template = locate_template( array( 'page-about.php' ) );
+        if ( ! empty( $new_template ) ) {
+            return $new_template;
+        }
+    }
+
+    // Check for "contato" and load page-contact.php
+    if ( strpos( $request_uri, '/contato' ) !== false ) {
+        $new_template = locate_template( array( 'page-contact.php' ) );
+        if ( ! empty( $new_template ) ) {
+            return $new_template;
+        }
+    }
+
+    return $template;
+}
+add_filter( 'template_include', 'azul_marinho_force_template' );
