@@ -98,7 +98,7 @@
                                         <ul class="navigation">
                                             <li class="active"><a href="<?php echo home_url(); ?>">Início</a></li>
                                             <li><a href="<?php echo home_url('/sobre-nos'); ?>">Sobre Nós</a></li>
-                                            <li><a href="<?php echo home_url('/loja'); ?>">Produtos</a></li>
+                                            <li class="active"><a href="<?php echo function_exists( 'wc_get_page_id' ) ? get_permalink( wc_get_page_id( 'shop' ) ) : home_url( '/loja' ); ?>">Produtos</a></li>
                                             <li class="menu-item-has-children"><a href="javascript:void(0);">Conteúdo</a>
                                                 <ul class="sub-menu">
                                                     <li><a href="<?php echo home_url('/receitas'); ?>">Receitas</a></li>
